@@ -9,9 +9,10 @@ const authRoutes = require('./routes/auth')
 const connectDB = require('./config/database.js')
 const PORT = 3000
 
+// require("dotenv").config({ path: "./config/.env" })
+
 connectDB()
 
-require("dotenv").config({ path: "./config/.env" })
 require('./config/passport')(passport)
 
 app.set('view engine', 'ejs')
@@ -20,7 +21,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.use('/', homeRoutes)
-
 
 //passport middleware
 app.use(passport.initialize())
