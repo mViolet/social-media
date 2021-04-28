@@ -1,0 +1,33 @@
+{
+  "name": "social-media",
+  "version": "1.0.0",
+  "description": "A crafty social media app by Team Kleenex",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mViolet/social-media.git"
+  },
+  "author": "Team Kleenex @ 100DEVS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mViolet/social-media/issues"
+  },
+  "homepage": "https://github.com/mViolet/social-media#readme",
+  "dependencies": {
+    "connect-mongo": "^4.4.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.6",
+    "node": "^16.0.0",
+    "passport": "^0.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
