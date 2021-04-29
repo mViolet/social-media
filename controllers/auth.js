@@ -3,10 +3,10 @@ const validator = require('validator')
 const User = require('../models/User')
 
 // This section checks if user on login page has logged in. if so , goes to main page, if not goes to login
-exports.getLogin = (req, res) => { //need path for redirect if already logged in 
- // if (req.user) {
- //   return res.redirect('/')
- // }
+exports.getLogin = (req, res) => { 
+  if (req.user) {
+    return res.redirect('/feed')
+  }
   res.render('login', {
     title: 'Login'
   })
@@ -33,7 +33,7 @@ exports.postLogin = (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) { return next(err) }
       req.flash('success', { msg: 'Success! You are logged in.' })
-      res.redirect(req.session.returnTo || '/') //??????????  Path to page once user is validated and logged in
+      res.redirect(req.session.returnTo || '/feed') 
     })
   })(req, res, next)
 }
@@ -51,10 +51,10 @@ exports.logout = (req, res) => {
 
 
 // This section checks if user on signup page has logged in. if so , goes to main page, if not goes to signup
-exports.getSignup = (req, res) => { //need path for redirect if already logged in 
-  //  if (req.user){
-  //     return res.redirect('/?????')
-  //  }
+exports.getSignup = (req, res) => { 
+    if (req.user){
+       return res.redirect('/feed')
+    }
     res.render('signup', {
     title: 'Create Account'
 })
@@ -94,7 +94,7 @@ exports.postSignup = (req, res, next) => {
           if (err) {
             return next(err)
           }
-          res.redirect('/')//??????????  Path to page once user is created and logged in
+          res.redirect('/feed')
         })
       })
     })
