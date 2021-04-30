@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
-const mySecret = process.env['DB_STRING'] //use env feature provided by Replit.
+require("dotenv").config({ path: "./config/.env" })
+
+// const mySecret = process.env.DB_STRING //use env feature provided by Replit.
+const mySecret = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.lwwve.mongodb.net/Cluster0?retryWrites=true&w=majority`
 
 const connectDB = async () => {
   try {

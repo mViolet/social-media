@@ -1,4 +1,4 @@
-const LocalStrategy = require('passport-locak')
+const LocalStrategy = require('passport-local')
 const mongoose = require('mongoose')
 const User = require ('../models/User')
 
