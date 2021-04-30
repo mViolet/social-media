@@ -6,7 +6,7 @@ const session = require('express-session')
 const flash = require('express-flash')
 const MongoStore = require('connect-mongo')(session)
 const homeRoutes = require('./routes/home')
-const authRoutes = require('./routes/auth')
+const feedRoutes = require('./routes/feed')
 const connectDB = require('./config/database.js')
 const PORT = 3000
 
@@ -37,6 +37,7 @@ app.use(passport.session())
 app.use(flash())
 
 app.use('/', homeRoutes)
+app.use('/feed', feedRoutes)
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server now running on ${PORT}`);
