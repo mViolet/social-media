@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a New Post</title>
+    <link rel="stylesheet" href="../css/compiled.css">
+</head>
+<body class="h-screen">
+    <header class="bg-white p-3 px-10 shadow sm:block">
+        <nav class="w-full flex-row sm:flex sm:justify-between">
+            <img class="w-40" src="../images/h-logo.svg" alt="knitly logo">
+            <ul class="w-full pt-5 sm:py-0 justify-between sm:w-2/5 lg:w-1/4 flex sm:items-center sm:justify-between">
+                <li class="cursor-pointer hover:text-indigo-400"><a href="/feed">Back To Feed</a></li>
+                <li class="cursor-pointer hover:text-indigo-400"><a href="/logout" method="POST">(log out)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2>Make a New Post</h2>
+    <form action="/feed/makePost" enctype="multipart/form-data" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <label for="image">Image</label>
+            <input type="file" name="file" id="image">
+        </div>
+        <button type="submit" value="Upload">Submit</button>
+    </form>
+</body>
+</html>
