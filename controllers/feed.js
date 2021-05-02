@@ -8,7 +8,7 @@ module.exports = {
             const posts = await Post.find()
             // const itemsLeft = await Todo.countDocuments({ userId: req.user.id, completed: false })
             // res.render('feed.ejs', { todos: todoItems, left: itemsLeft, user: req.user })
-            res.render('feed.ejs', {posts: posts})
+            res.render('feed.ejs', {posts: posts, user: req.user})
         } catch (err) {
             console.log(err)
         }
@@ -40,10 +40,22 @@ module.exports = {
             console.log(err)
         }
     },
+    getProfile: async (req, res) =>{
+        try {
+            const posts = await Post.find({user:req.user.id})
+            console.log(posts)
+            res.render('profile.ejs', {posts: posts, user: req.user})
+        } catch (err) {
+            console.log(err)
+        }
+    },
     deletePost: async (req, res) => {
         try {
+            const post = await Post.findById({_id: req.params.id})
+            await cloudinary.uploader.destroy(post.cloudinaryID)
+            await Post.remove({_id: req.params.id})
             console.log(req)
-            res.send("post deleted?")
+            res.redirect('/feed')
         } catch (err) {
             console.log(err)
         }
