@@ -10,8 +10,9 @@ router.get('/', ensureAuth, feedController.getFeed)
 
 //some routes for future use
 router.get('/newPost', feedController.getMakePost)
+router.get('/profile', feedController.getProfile)
 router.post('/makePost', upload.single('file'), feedController.makePost)
-router.delete('/deletePost', feedController.deletePost)
+router.post('/deletePost/:id', feedController.deletePost)
 router.post('/logout', authController.logout)
 
 module.exports = router
