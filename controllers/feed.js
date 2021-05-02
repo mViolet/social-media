@@ -59,5 +59,18 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    }, 
+    addLike: async (req, res) => {
+        try {
+            await Post.findOneAndUpdate(
+                {_id: req.params.id},
+                {
+                   $inc: {likes: 1},
+                })
+            console.log('likes +1')
+            res.redirect('/feed')
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
