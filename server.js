@@ -30,6 +30,9 @@ app.use(
     })
   );
 
+//serve public files as client-side files
+app.use(express.static('public'))
+
 //passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
