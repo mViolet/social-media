@@ -29,7 +29,9 @@
                 <p class="py-5 break-word"><%= posts[i].description %></p>
                 <p class=""><%= posts[i].userName %></p>
                 <div class="align-end">
-                    <span class="cursor-pointer opacity-50 hover:opacity-100">❤</span>
+                    <form action="/feed/addLike/<%= posts[i].id %>" method="POST">
+                        <button class="cursor-pointer opacity-50 hover:opacity-100" type="submit">❤</button>
+                    </form>
                     <span><%= posts[i].likes %> Likes</span>
                     <% if(posts[i].user == user.id){%>
                         <form action="/feed/deletePost/<%= posts[i].id %>" method="POST">

@@ -13,6 +13,7 @@ router.get('/newPost', feedController.getMakePost)
 router.get('/profile', feedController.getProfile)
 router.post('/makePost', upload.single('file'), feedController.makePost)
 router.post('/deletePost/:id', feedController.deletePost)
+router.post('/addLike/:id', feedController.addLike)
 router.post('/logout', authController.logout)
 
 module.exports = router
