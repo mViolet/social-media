@@ -571,6 +571,21 @@ p {
   margin-bottom: 15px;
 }
 
+/* [name^="Choose"] {
+    padding: 1rem 0.75rem;
+    color: #ffffff;
+    background: #6366F1;
+    border-radius: 0.375rem;
+  }
+  [name^="Choose"]:hover {
+    background: #4338CA;
+  }
+  [name^="Choose"]:focus {
+    background: #4F46E5;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  } */
+
 .container {
   width: 100%;
 }
@@ -603,6 +618,39 @@ p {
   .container {
     max-width: 1536px;
   }
+}
+
+.btn {
+  --tw-bg-opacity: 1;
+  background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
+}
+
+.btn:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(67, 56, 202, var(--tw-bg-opacity));
+}
+
+.btn:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
+}
+
+.btn {
+  border-radius: 0.375rem;
+}
+
+.btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.btn {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {

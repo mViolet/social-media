@@ -7,6 +7,7 @@
     <title>User Feed</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/compiled.css">
+    <script src="https://kit.fontawesome.com/30d9eca2ce.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="bg-white p-3 px-10 shadow sm:block">
@@ -24,15 +25,16 @@
 
         <% for(let i=0;i<posts.length; i++){ %>
             <section class="grid border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md">
-                <h1 class="py-3 font-semibold"><%= posts[i].title %></h1>
-                <img class="py-3 object-fill" src="<%= posts[i].image %>" alt="knitting photo">
+                <h1 class="pt-3 font-semibold"><%= posts[i].title %>
+                <span class="block text-base text-gray-400 pt-3 mb-5"><i class="fas fa-user-circle pr-2 text-xl"></i><%= posts[i].userName %></span></h1>
+                <img class="py-0 object-fill border" src="<%= posts[i].image %>" alt="knitting photo">
                 <p class="py-5 break-word"><%= posts[i].description %></p>
-                <p class=""><%= posts[i].userName %></p>
-                <div class="align-end">
+                
+                <div class="align-end flex justify-between self-end">
                     <form action="/feed/addLike/<%= posts[i].id %>" method="POST">
-                        <button class="cursor-pointer opacity-50 hover:opacity-100" type="submit">❤</button>
+                        <button class="cursor-pointer opacity-50 hover:opacity-100 focus:outline-none text-red" type="submit"><i class="fas fa-heart text-red-400"></i></button>
+                        <span><%= posts[i].likes %> Likes</span>
                     </form>
-                    <span><%= posts[i].likes %> Likes</span>
                     <% if(posts[i].user == user.id){%>
                         <form action="/feed/deletePost/<%= posts[i].id %>" method="POST">
                             <button class="cursor-pointer text-gray-400 hover:text-red-400 float-right" type="submit">(delete post)</button>
@@ -42,45 +44,7 @@
                 
             </section>
         <% } %>
-
-        <!-- plan is for ejs to generate one of these sections per post in db-->
-        <section class="grid border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md">
-            <h1 class="py-3 font-semibold">Sample post</h1>
-            <img class="py-3 object-fill" src="https://images.unsplash.com/photo-1486129273931-27820249c615?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80" alt="knitting photo">
-            <p class="py-5 break-word">Here's a description of the content of the post</p>
-            <div class="align-end">
-                <span class="cursor-pointer opacity-50 hover:opacity-100">❤</span>
-                <span>1 Likes</span>
-                <span class="cursor-pointer text-gray-400 hover:text-red-400 float-right">(delete post)</span>
-            </div>
-        </section>
-
-        <section class="border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md">
-            <h1 class="py-3 block font-semibold">Sample post</h1>
-            <img class="py-3 block object-fill"
-                src="https://images.unsplash.com/photo-1544967919-44c1ef2f9e7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80"
-                alt="knitting photo">
-            <p class="py-5 block break-word">Here's a description of the content of the post</p>
-            <div class="align-end">
-                <span class="cursor-pointer opacity-50 hover:opacity-100">❤</span>
-                <span>1 Likes</span>
-                <span class="cursor-pointer text-gray-400 hover:text-red-400 float-right">(delete post)</span>
-            </div>
-        </section>
-
-        <section class="border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md">
-            <h1 class="py-3 block font-semibold">Sample post</h1>
-            <img class="py-3 block object-fill"
-                src="https://images.unsplash.com/photo-1553585989-ad5836379734?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1778&q=80"
-                alt="knitting photo">
-            <p class="py-5 block break-word">Here's a description of the content of the post </p>
-            <div class="align-end">
-                <span class="cursor-pointer opacity-50 hover:opacity-100">❤</span>
-                <span>1 Likes</span>
-                <span class="cursor-pointer text-gray-400 hover:text-red-400 float-right">(delete post)</span>
-            </div>
-        </section>
-
     </main>
+<script src="js/main.js"></script>
 </body>
 </html>
