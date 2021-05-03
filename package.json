@@ -21,6 +21,7 @@
   "homepage": "https://github.com/mViolet/social-media#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cloudinary": "^1.25.1",
     "connect-mongo": "^3.2.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
