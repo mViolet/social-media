@@ -3,7 +3,7 @@ const cloudinary = require('../middleware/cloudinary')
 
 module.exports = {
     getFeed: async (req, res) => {
-        console.log(req)  //req.user?
+        // console.log(req)  //req.user?
         try {
             const posts = await Post.find()
             // const itemsLeft = await Todo.countDocuments({ userId: req.user.id, completed: false })
@@ -15,7 +15,7 @@ module.exports = {
     },
     getMakePost: async (req,res) =>{
         try {
-            console.log(req)
+            // console.log(req)
             res.render('newPost.ejs')
         } catch (err) {
             console.log(err)
@@ -43,7 +43,7 @@ module.exports = {
     getProfile: async (req, res) =>{
         try {
             const posts = await Post.find({user:req.user.id})
-            console.log(posts)
+            // console.log(posts)
             res.render('profile.ejs', {posts: posts, user: req.user})
         } catch (err) {
             console.log(err)
@@ -53,8 +53,8 @@ module.exports = {
         try {
             const post = await Post.findById({_id: req.params.id})
             await cloudinary.uploader.destroy(post.cloudinaryID)
-            await Post.remove({_id: req.params.id})
-            console.log(req)
+            await Post.deleteOne({_id: req.params.id})
+            console.log(`${req.user.userName} has deleted a post`)
             res.redirect('/feed')
         } catch (err) {
             console.log(err)
