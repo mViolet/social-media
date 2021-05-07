@@ -1,4 +1,5 @@
 const Post = require('../models/Post')
+const User = require('../models/User')
 const cloudinary = require('../middleware/cloudinary')
 
 module.exports = {
@@ -62,13 +63,34 @@ module.exports = {
     }, 
     addLike: async (req, res) => {
         try {
-            await Post.findOneAndUpdate(
-                {_id: req.params.id},
-                {
-                   $inc: {likes: 1},
-                })
-            console.log('likes +1')
-            res.redirect('/feed')
+            const postIndex = await req.user.likedPosts.indexOf(req.params.id)  //hold -1 if not found. Otherwise holds index
+            if (postIndex > -1) {           
+                await User.findOneAndUpdate(
+                    { _id: req.user.id },
+                    {
+                        $pull: { likedPosts: req.params.id },  //remove the post id from the user's list of likedPosts
+                    })
+                await Post.findOneAndUpdate( 
+                    { _id: req.params.id },
+                    {
+                        $inc: { likes: -1 },
+                    })
+                console.log(`${req.user.userName} removed a like`)
+                res.redirect('/feed')
+            } else {
+                await User.findOneAndUpdate(
+                    {_id: req.user.id},
+                    {
+                        $push: { likedPosts: req.params.id },  //add the post id from the user's list of likedPosts
+                    })
+                await Post.findOneAndUpdate(
+                    {_id: req.params.id},
+                    {
+                       $inc: {likes: 1},
+                    })
+                console.log(`${req.user.userName} liked a post`)
+                res.redirect('/feed')
+            }  
         } catch (err) {
             console.log(err)
         }
