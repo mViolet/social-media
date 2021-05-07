@@ -25,23 +25,31 @@
 
         <% for(let i=0;i<posts.length; i++){ %>
             <section class="grid border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md">
-                <h1 class="pt-3 font-semibold"><%= posts[i].title %>
-                <span class="block text-base text-gray-400 pt-3 mb-5"><i class="fas fa-user-circle pr-2 text-xl"></i><%= posts[i].userName %></span></h1>
-                <img class="py-0 object-fill border" src="<%= posts[i].image %>" alt="knitting photo">
-                <p class="py-5 break-word"><%= posts[i].description %></p>
-                
+                <div>
+                    <h1 class="pt-3 font-semibold"><%= posts[i].title %>
+                        <span class="block text-base text-gray-400 pt-3 mb-5"><i class="fas fa-user-circle pr-2 text-xl"></i><%= posts[i].userName %></span></h1>
+                </div>
+                <div class="flex h-72">
+                    <img class="py-0 flex-grow object-cover border" src="<%= posts[i].image %>" alt="knitting photo">
+                </div>
+                <div class="h-40"> 
+                    <p class="py-5 break-word">
+                        <%= posts[i].description.slice(0,100) %>...
+                        <br>
+                        <a href="/feed/post/<%= posts[i].id %>"> (read more)</a>
+                    </p>
+                </div>
                 <div class="align-end flex justify-between self-end">
-                    <form action="/feed/addLike/<%= posts[i].id %>" method="POST">
+                    <form action="/feed/addLike/<%= posts[i].id%>?_method=PUT" method="POST">
                         <button class="cursor-pointer opacity-50 hover:opacity-100 focus:outline-none text-red" type="submit"><i class="fas fa-heart text-red-400"></i></button>
                         <span><%= posts[i].likes %> Likes</span>
                     </form>
                     <% if(posts[i].user == user.id){%>
-                        <form action="/feed/deletePost/<%= posts[i].id %>" method="POST">
+                        <form action="/feed/deletePost/<%= posts[i].id %>?_method=DELETE" method="POST">
                             <button class="cursor-pointer text-gray-400 hover:text-red-400 float-right" type="submit">(delete post)</button>
                         </form>
                     <% } %>
                 </div>
-                
             </section>
         <% } %>
     </main>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feed</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/compiled.css">
+    <script src="https://kit.fontawesome.com/30d9eca2ce.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="bg-white p-3 px-10 shadow sm:block">
+        <nav class="w-full flex-row sm:flex sm:justify-between">
+            <img class="w-40" src="../../images/h-logo.svg" alt="knitly logo">
+            <ul class="w-full pt-5 sm:py-0 justify-between sm:w-2/5 lg:w-1/4 flex sm:items-center sm:justify-between">
+                <li class="cursor-pointer hover:text-indigo-400"><a href="/feed/newPost">Post your Project!</a></li>
+                <li class="cursor-pointer hover:text-indigo-400"><a href="/feed">Feed</a></li>
+                <li class="cursor-pointer hover:text-indigo-400"><a href="/feed/profile">Profile</a></li>
+                <li class="cursor-pointer hover:text-indigo-400"><a href="/logout" method="POST">(log out)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex justify-center">
+        <section class="grid grid-cols-1 border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md my-3 max-w-5xl">
+            <div>
+                <h1 class="pt-3 font-semibold">
+                    <%= post.title %>
+                        <span class="block text-base text-gray-400 pt-3 mb-5"><i class="fas fa-user-circle pr-2 text-xl"></i>
+                            <%= post.userName %>
+                        </span>
+                </h1>
+            </div>
+            <div class="place-self-center">
+                <img class="py-0 object-fill border" src="<%= post.image %>" alt="knitting photo">
+            </div>
+            <div>
+                <p class="py-5 break-word">
+                    <%= post.description %>
+                </p>
+            </div>
+            <div class="align-end flex justify-between self-end">
+                <form action="/feed/addLike/<%= posts[i].id%>?_method=PUT" method="POST">
+                    <button class="cursor-pointer opacity-50 hover:opacity-100 focus:outline-none text-red" type="submit"><i
+                            class="fas fa-heart text-red-400"></i></button>
+                    <span>
+                        <%= post.likes %> Likes
+                    </span>
+                </form>
+                <% if(post.user==user.id){%>
+                    <form action="/feed/deletePost/<%= posts[i].id %>?_method=DELETE" method="POST">
+                        <button class="cursor-pointer text-gray-400 hover:text-red-400 float-right" type="submit">(delete
+                            post)</button>
+                    </form>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

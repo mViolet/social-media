@@ -56,11 +56,19 @@ module.exports = {
             await cloudinary.uploader.destroy(post.cloudinaryID)
             await Post.deleteOne({_id: req.params.id})
             console.log(`${req.user.userName} has deleted a post`)
-            res.redirect('/feed')
+            res.redirect(req.get('referer'));
         } catch (err) {
             console.log(err)
         }
     }, 
+    getPost: async (req, res) => {
+        try {
+            const post = await Post.findById({_id: req.params.id})
+            res.render('post', {post: post, user: req.user})
+        } catch (err) {
+            console.log(err)
+        }
+    },
     addLike: async (req, res) => {
         try {
             const postIndex = await req.user.likedPosts.indexOf(req.params.id)  //hold -1 if not found. Otherwise holds index
