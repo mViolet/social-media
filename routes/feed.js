@@ -11,9 +11,10 @@ router.get('/', ensureAuth, feedController.getFeed)
 //some routes for future use
 router.get('/newPost', feedController.getMakePost)
 router.get('/profile', feedController.getProfile)
+router.get('/post/:id', feedController.getPost)
 router.post('/makePost', upload.single('file'), feedController.makePost)
-router.post('/deletePost/:id', feedController.deletePost)
-router.post('/addLike/:id', feedController.addLike)
+router.delete('/deletePost/:id', feedController.deletePost)
+router.put('/addLike/:id', feedController.addLike)
 router.post('/logout', authController.logout)
 
 module.exports = router

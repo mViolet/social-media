@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const flash = require('express-flash')
+const methodOverride = require("method-override");
 const MongoStore = require('connect-mongo')(session)
 const homeRoutes = require('./routes/home')
 const feedRoutes = require('./routes/feed')
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(methodOverride("_method"))
 
 app.use(
     session({
