@@ -24,7 +24,9 @@
     <main class="grid grid-cols-1 gap-6 m-5 sm:grid-cols-2 lg:grid-cols-3 ">
 
         <% for(let i=0;i<posts.length; i++){ %>
+            
             <section class="grid border-2 p-5 rounded-xl bg-white bg-opacity-100 text-md">
+                <a href="feed/post/<%= posts[i].id %>">
                 <div>
                     <h1 class="pt-3 font-semibold"><%= posts[i].title %>
                         <span class="block text-base text-gray-400 pt-3 mb-5"><i class="fas fa-user-circle pr-2 text-xl"></i><%= posts[i].userName %></span></h1>
@@ -50,6 +52,7 @@
                         </form>
                     <% } %>
                 </div>
+            </a>
             </section>
         <% } %>
     </main>

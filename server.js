@@ -45,5 +45,5 @@ app.use('/', homeRoutes)
 app.use('/feed', feedRoutes)
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server now running on ${PORT}`);
+    console.log(`Server now running on port ${PORT}`);
 })

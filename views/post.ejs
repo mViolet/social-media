@@ -41,7 +41,7 @@
                 </p>
             </div>
             <div class="align-end flex justify-between self-end">
-                <form action="/feed/addLike/<%= posts[i].id%>?_method=PUT" method="POST">
+                <form action="/feed/addLike/<%= post._id%>?_method=PUT" method="POST">
                     <button class="cursor-pointer opacity-50 hover:opacity-100 focus:outline-none text-red" type="submit"><i
                             class="fas fa-heart text-red-400"></i></button>
                     <span>
@@ -49,7 +49,7 @@
                     </span>
                 </form>
                 <% if(post.user==user.id){%>
-                    <form action="/feed/deletePost/<%= posts[i].id %>?_method=DELETE" method="POST">
+                    <form action="/feed/deletePost/<%= post._id %>?_method=DELETE" method="POST">
                         <button class="cursor-pointer text-gray-400 hover:text-red-400 float-right" type="submit">(delete
                             post)</button>
                     </form>
