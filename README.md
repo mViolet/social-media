@@ -2,8 +2,6 @@
 
 > Knitly is a social media app designed for Knitters and Crafters alike to share their projects.
 
-https://knitly.herokuapp.com/
-
 ## Introduction
 
 At Knitly, we believe in social media destinations with a purpose. Users of Knitly can find comfort in knowing their feeds will only include crafting and knitting
